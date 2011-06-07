@@ -1,5 +1,7 @@
 <h1>Topics</h1>
-<%= link_to "New Topic", new_topic_path %>
+<% if current_user %>
+  <%= link_to "New Topic", new_topic_path %>
+<% end %>
 <% if @topics.empty? %>
   There are currently no topics.
 <% else %>

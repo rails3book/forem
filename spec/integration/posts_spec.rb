@@ -5,6 +5,7 @@ describe "posts" do
     @topic = Forem::Topic.new(:subject => "First topic!")
     @topic.posts.build(:text => "First post!")
     @topic.save!
+    sign_in!
   end
   
   it "reply to a topic" do

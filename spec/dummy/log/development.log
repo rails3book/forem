@@ -225,3 +225,15 @@ Migrating to AddPostsCountToForemTopics (20110607035916)
   [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
   [1m[35m (0.0ms)[0m  PRAGMA index_list("forem_posts")
   [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("forem_topics")[0m
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateForemTopics (20110607020624)
+Migrating to CreateForemPosts (20110607021444)
+Migrating to AddPostsCountToForemTopics (20110607035916)
+Migrating to CreateUsers (20110607055250)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "login" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110607055250')
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("forem_posts")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("forem_topics")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("users")
