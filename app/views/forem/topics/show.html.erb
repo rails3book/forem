@@ -1,0 +1,6 @@
+<%= div_for @topic do %>
+  <h1><%= @topic.subject %></h1>
+  <div id='posts'>
+    <%= render :partial => "forem/posts/post", :collection => @topic.posts %>
+  </div>
+<% end %>

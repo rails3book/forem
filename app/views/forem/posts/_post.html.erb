@@ -1,0 +1,4 @@
+<%= div_for(post) do %>
+  <small>Written at <%= post.created_at %></small>
+  <%= simple_format(post.text) %>
+<% end %>

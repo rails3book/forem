@@ -12,7 +12,7 @@ describe "topics" do
       page.should have_content("Topic has been created!")
     end
     
-    within ".topic #posts .post" do
+    within ".forem_topic #posts .forem_post" do
       page.should have_content("First post!")
     end
   end

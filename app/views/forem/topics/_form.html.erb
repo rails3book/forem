@@ -1,0 +1,11 @@
+<%= form_for @topic do |f| %>
+  <p>
+    <%= f.label :subject %>
+    <%= f.text_field :subject %>
+  </p>
+
+  <%= f.fields_for :posts do |post| %>
+    <%= render :partial => "forem/posts/form", :locals => { :post => post} %>
+  <% end %>
+  <%= f.submit %>
+<% end %>

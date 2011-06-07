@@ -1,0 +1,24 @@
+<h1>Topics</h1>
+<%= link_to "New Topic", new_topic_path %>
+<% if @topics.empty? %>
+  There are currently no topics.
+<% else %>
+  <table id='topics'>
+    <thead>
+      <tr>
+        <td>Subject</td>
+        <td>Posts count</td>
+        <td>Last post at</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @topics.each do |topic| %>
+        <tr>
+          <td id='topic_subject'><%= link_to topic.subject, topic %></td>
+          <td id='posts_count'>0 posts</td>
+          <td id='last_post'>last post was at TIME by USER</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
