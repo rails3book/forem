@@ -737,3 +737,93 @@ Started GET "/forem/topics/2" for 127.0.0.1 at 2011-06-07 14:54:45 +1000
   [1m[36mForem::Post Load (0.2ms)[0m  [1mSELECT "forem_posts".* FROM "forem_posts" WHERE "forem_posts"."topic_id" = 2 ORDER BY created_at ASC[0m
 Rendered /Users/ryan/Sites/book/forem/app/views/forem/posts/_post.html.erb (1.0ms)
 Completed 200 OK in 5ms (Views: 3.6ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (17.2ms)[0m  INSERT INTO "forem_topics" ("created_at", "posts_count", "subject", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)  [["created_at", Tue, 07 Jun 2011 06:17:05 UTC +00:00], ["posts_count", 0], ["subject", "First topic!"], ["updated_at", Tue, 07 Jun 2011 06:17:05 UTC +00:00], ["user_id", nil]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "forem_posts" ("created_at", "text", "topic_id", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Tue, 07 Jun 2011 06:17:05 UTC +00:00], ["text", "First post!"], ["topic_id", 2], ["updated_at", Tue, 07 Jun 2011 06:17:05 UTC +00:00], ["user_id", nil]]
+  [1m[35mForem::Topic Load (0.1ms)[0m  SELECT "forem_topics".* FROM "forem_topics" WHERE "forem_topics"."id" = 2 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "forem_topics" SET "posts_count" = COALESCE("posts_count", 0) + 1 WHERE "forem_topics"."id" = 2[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+
+
+Started GET "/forem/topics" for 127.0.0.1 at 2011-06-07 16:17:06 +1000
+  Processing by Forem::TopicsController#index as HTML
+  [1m[36mForem::Topic Load (0.1ms)[0m  [1mSELECT "forem_topics".* FROM "forem_topics" [0m
+Rendered /Users/ryan/Sites/book/forem/app/views/forem/topics/index.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 95ms (Views: 94.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/forem/topics/2" for 127.0.0.1 at 2011-06-07 16:17:06 +1000
+  Processing by Forem::TopicsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mForem::Topic Load (0.2ms)[0m  SELECT "forem_topics".* FROM "forem_topics" WHERE "forem_topics"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36mForem::Post Load (0.2ms)[0m  [1mSELECT "forem_posts".* FROM "forem_posts" WHERE "forem_posts"."topic_id" = 2 ORDER BY created_at ASC[0m
+Rendered /Users/ryan/Sites/book/forem/app/views/forem/posts/_post.html.erb (45.1ms)
+Rendered /Users/ryan/Sites/book/forem/app/views/forem/topics/show.html.erb within layouts/application (57.5ms)
+Completed 200 OK in 60ms (Views: 59.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/forem/topics/2/posts/new" for 127.0.0.1 at 2011-06-07 16:17:06 +1000
+  Processing by Forem::PostsController#new as HTML
+  Parameters: {"topic_id"=>"2"}
+  [1m[35mForem::Topic Load (0.1ms)[0m  SELECT "forem_topics".* FROM "forem_topics" WHERE "forem_topics"."id" = ? LIMIT 1  [["id", "2"]]
+Rendered /Users/ryan/Sites/book/forem/app/views/forem/posts/_form.html.erb (2.7ms)
+Rendered /Users/ryan/Sites/book/forem/app/views/forem/posts/new.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 57ms (Views: 55.0ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/forem/topics/2/posts" for 127.0.0.1 at 2011-06-07 16:17:06 +1000
+  Processing by Forem::PostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "post"=>{"text"=>"First reply!"}, "commit"=>"Create Post", "topic_id"=>"2"}
+  [1m[36mForem::Topic Load (0.1ms)[0m  [1mSELECT "forem_topics".* FROM "forem_topics" WHERE "forem_topics"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "forem_posts" ("created_at", "text", "topic_id", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Tue, 07 Jun 2011 06:17:06 UTC +00:00], ["text", "First reply!"], ["topic_id", 2], ["updated_at", Tue, 07 Jun 2011 06:17:06 UTC +00:00], ["user_id", nil]]
+  [1m[35mForem::Topic Load (0.1ms)[0m  SELECT "forem_topics".* FROM "forem_topics" WHERE "forem_topics"."id" = 2 LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "forem_topics" SET "posts_count" = COALESCE("posts_count", 0) + 1 WHERE "forem_topics"."id" = 2[0m
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/forem/topics/2
+Completed 302 Found in 6ms
+
+
+Started GET "/forem/topics/2" for 127.0.0.1 at 2011-06-07 16:17:06 +1000
+  Processing by Forem::TopicsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mForem::Topic Load (0.1ms)[0m  [1mSELECT "forem_topics".* FROM "forem_topics" WHERE "forem_topics"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mForem::Post Load (0.2ms)[0m  SELECT "forem_posts".* FROM "forem_posts" WHERE "forem_posts"."topic_id" = 2 ORDER BY created_at ASC
+Rendered /Users/ryan/Sites/book/forem/app/views/forem/posts/_post.html.erb (1.5ms)
+Rendered /Users/ryan/Sites/book/forem/app/views/forem/topics/show.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/forem/topics" for 127.0.0.1 at 2011-06-07 16:17:06 +1000
+  Processing by Forem::TopicsController#index as HTML
+  [1m[36mForem::Topic Load (0.2ms)[0m  [1mSELECT "forem_topics".* FROM "forem_topics" [0m
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/forem/topics/new" for 127.0.0.1 at 2011-06-07 16:17:06 +1000
+  Processing by Forem::TopicsController#new as HTML
+Rendered /Users/ryan/Sites/book/forem/app/views/forem/posts/_form.html.erb (0.4ms)
+Rendered /Users/ryan/Sites/book/forem/app/views/forem/topics/_form.html.erb (2.9ms)
+Completed 200 OK in 7ms (Views: 5.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/forem/topics" for 127.0.0.1 at 2011-06-07 16:17:06 +1000
+  Processing by Forem::TopicsController#create as HTML
+  Parameters: {"utf8"=>"✓", "topic"=>{"subject"=>"First topic!", "posts_attributes"=>{"0"=>{"text"=>"First post!"}}}, "commit"=>"Create Topic"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "forem_topics" ("created_at", "posts_count", "subject", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Tue, 07 Jun 2011 06:17:06 UTC +00:00], ["posts_count", 0], ["subject", "First topic!"], ["updated_at", Tue, 07 Jun 2011 06:17:06 UTC +00:00], ["user_id", nil]]
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "forem_posts" ("created_at", "text", "topic_id", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)  [["created_at", Tue, 07 Jun 2011 06:17:06 UTC +00:00], ["text", "First post!"], ["topic_id", 2], ["updated_at", Tue, 07 Jun 2011 06:17:06 UTC +00:00], ["user_id", nil]]
+  [1m[36mForem::Topic Load (0.1ms)[0m  [1mSELECT "forem_topics".* FROM "forem_topics" WHERE "forem_topics"."id" = 2 LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "forem_topics" SET "posts_count" = COALESCE("posts_count", 0) + 1 WHERE "forem_topics"."id" = 2
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/forem/topics/2
+Completed 302 Found in 8ms
+
+
+Started GET "/forem/topics/2" for 127.0.0.1 at 2011-06-07 16:17:06 +1000
+  Processing by Forem::TopicsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mForem::Topic Load (0.1ms)[0m  SELECT "forem_topics".* FROM "forem_topics" WHERE "forem_topics"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36mForem::Post Load (0.2ms)[0m  [1mSELECT "forem_posts".* FROM "forem_posts" WHERE "forem_posts"."topic_id" = 2 ORDER BY created_at ASC[0m
+Rendered /Users/ryan/Sites/book/forem/app/views/forem/posts/_post.html.erb (1.0ms)
+Completed 200 OK in 5ms (Views: 3.4ms | ActiveRecord: 0.2ms)
