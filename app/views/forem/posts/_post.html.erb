@@ -1,4 +1,5 @@
 <%= div_for(post) do %>
   <small>Written at <%= post.created_at %></small>
   <%= simple_format(post.text) %>
+  <%= link_to "Reply", new_topic_post_path(@topic) %>
 <% end %>

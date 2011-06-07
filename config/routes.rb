@@ -1,3 +1,5 @@
 Forem::Engine.routes.draw do
-  resources :topics
+  resources :topics do
+    resources :posts
+  end
 end

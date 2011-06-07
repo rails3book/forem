@@ -1,0 +1,5 @@
+<h2>New Post</h2>
+<%= form_for [@topic, @post] do |post| %>
+  <%= render :partial => "form", :locals => { :post => post } %>
+  <%= post.submit %>
+<% end %>
