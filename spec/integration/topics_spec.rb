@@ -20,6 +20,10 @@ describe "topics" do
       within ".forem_topic #posts .forem_post" do
         page.should have_content("First post!")
       end
+      
+      within ".forem_topic #posts .forem_post .user" do
+        page.should have_content("forem_user")
+      end
     end
   end
   

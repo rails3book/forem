@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.name = "forem"
   s.summary = "Insert Forem summary."
   s.description = "Insert Forem description."
-  s.files = Dir["{app,config,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files       = `git ls-files`.split("\n")
   s.version = "0.0.1"
   
   # s.add_dependency "rails", "3.1.0"
