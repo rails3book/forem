@@ -51,7 +51,7 @@ GIT
 PATH
   remote: .
   specs:
-    forem (0.0.1)
+    ticketee-forem (0.0.1)
 
 GEM
   remote: http://rubygems.org/
@@ -137,8 +137,8 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
-  forem!
   launchy
   rails!
   rspec-rails (~> 2.5)
   sqlite3
+  ticketee-forem!
