@@ -6,6 +6,7 @@ Gem::Specification.new do |s|
   s.description = "Insert Forem description."
   s.files       = `git ls-files`.split("\n")
   s.version = "0.0.1"
+  s.authors = ["radarlistener@gmail.com"]
   
   # s.add_dependency "rails", "3.1.0"
   
